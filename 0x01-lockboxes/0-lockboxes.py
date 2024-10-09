@@ -13,25 +13,28 @@ def canUnlockAll(boxes):
     Write a method that determines if all the boxes can
     be opened.
     """
-    i = 0
-    keys = []
+    try:
+        i = 0
+        keys = []
 
-    q = deque()
+        q = deque()
 
-    visited = [False] * len(boxes)
-    visited[i] = True
+        visited = [False] * len(boxes)
+        visited[i] = True
 
-    q.append(i)
+        q.append(i)
 
-    while (q):
-        curr = q.popleft()
-        keys.append(curr)
+        while (q):
+            curr = q.popleft()
+            keys.append(curr)
 
-        for x in boxes[curr]:
-            if not visited[x]:
-                visited[x] = True
-                q.append(x)
-    if len(keys) == len(boxes):
-        return True
+            for x in boxes[curr]:
+                if not visited[x]:
+                    visited[x] = True
+                    q.append(x)
+        if len(keys) == len(boxes):
+            return True
 
-    return False
+        return False
+    except IndexError:
+        return False
