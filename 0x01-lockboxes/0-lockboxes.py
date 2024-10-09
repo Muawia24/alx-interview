@@ -15,23 +15,40 @@ def canUnlockAll(boxes):
     """
     try:
         i = 0
+        # keys list
         keys = []
 
+        # Create a queue for BFS
         q = deque()
 
+        # Initially mark all the vertices as not visited
+        # When we push a vertex into the q, we mark it as
+        # visited
         visited = [False] * len(boxes)
+
+        # Mark the source node as visited and enqueue it
         visited[i] = True
 
         q.append(i)
 
+        # Iterate over the queu
         while (q):
+
+            # Dequeue a vertex from queue and add it to list
             curr = q.popleft()
             keys.append(curr)
 
+            # Get all adjacent vertices of the dequeued
+            # vertex. If an adjacent has not been visited,
+            # mark it visited and enqueue it
+            if not isinstance(boxes[curr], list):
+                return False
             for x in boxes[curr]:
+
                 if not visited[x]:
                     visited[x] = True
                     q.append(x)
+
         if len(keys) == len(boxes):
             return True
 
