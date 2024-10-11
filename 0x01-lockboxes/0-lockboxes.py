@@ -43,7 +43,10 @@ def canUnlockAll(boxes):
             # mark it visited and enqueue it
             if not isinstance(boxes[curr], list):
                 return False
+
             for x in boxes[curr]:
+                if x >= len(boxes):
+                    continue
 
                 if not visited[x]:
                     visited[x] = True
