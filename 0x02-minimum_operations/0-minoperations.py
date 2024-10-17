@@ -13,7 +13,7 @@ def fact(n: int, factors: List[int]) -> int:
     return sum(factors)
 
 
-def minOperations(n: int) -> Callable[[int, List[int]], int]:
+def minOperations(n: int) -> int:
     """
     calculates the fewest number of operations needed to
     result in exactly n H characters in the file.
