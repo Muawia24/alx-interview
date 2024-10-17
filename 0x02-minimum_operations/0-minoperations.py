@@ -18,5 +18,7 @@ def minOperations(n: int) -> Callable[[int, List[int]], int]:
     calculates the fewest number of operations needed to
     result in exactly n H characters in the file.
     """
+    if not isinstance(n, int) or n <= 1:
+        return 0
     factors: List[int] = []
     return fact(n, factors)
