@@ -20,5 +20,5 @@ def minOperations(n: int) -> int:
     """
     if not isinstance(n, int) or n <= 1:
         return 0
-    factors: List[int] = []
+    factors = []
     return fact(n, factors)
