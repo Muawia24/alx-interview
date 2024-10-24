@@ -7,10 +7,7 @@ import re
 import signal
 
 
-logs = {"file_size": 0}
-
-
-def log_parse(stdin):
+def log_parse(stdin: str, logs: dict) -> None:
     """
     Function that reads stdin line by line and computes
     metrics
@@ -22,7 +19,6 @@ def log_parse(stdin):
             r'(\d{3}) '
             r'(\d+)$'
             )
-
     try:
         counter = 0
         for line in stdin:
@@ -34,25 +30,33 @@ def log_parse(stdin):
 
             parse_list = line.split(' ')
             status_code = parse_list[-2]
-            if status_code in logs.keys():
-                logs[status_code] += 1
-            else:
-                logs[status_code] = 1
 
-            logs["file_size"] += int(parse_list[-1])
+            if status_code in logs:
+                logs[status_code] += 1
+
+            logs['file_size'] += int(parse_list[-1])
 
             if counter % 10 == 0:
-                print(f'File size: {logs["file_size"]}')
-                for key, value in sorted(logs.items()):
-                    if key != "file_size" and isinstance(int(key), int):
-                        print(f'{key}: {value}')
+                print_stat(logs)
+
     except KeyboardInterrupt:
-        print(f'file size:{logs["file_size"]}')
-        for key, value in sorted(logs.items()):
-            if key != "file_size":
-                print(f'{key}: {value}')
+        print_stat(logs)
+        raise
+
+
+def print_stat(logs: dict, ) -> None:
+    """
+    logs the statistics
+    """
+    print(f'File size: {logs["file_size"]}')
+    for key, value in sorted(logs.items()):
+        if key != "file_size":
+            print(f'{key}: {value}')
 
 
 if __name__ == "__main__":
+    codes = ["200", "301", "400", "401", "403", "404", "405", "500"]
+    logs = {code: 0 for code in codes}
+    logs['file_size'] = 0
 
-    log_parse(sys.stdin)
+    log_parse(sys.stdin, logs)
