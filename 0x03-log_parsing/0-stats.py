@@ -42,7 +42,7 @@ def log_parse(stdin):
             logs["file_size"] += int(parse_list[-1])
 
             if counter % 10 == 0:
-                print(f'file size:{logs["file_size"]}')
+                print(f'File size: {logs["file_size"]}')
                 for key, value in sorted(logs.items()):
                     if key != "file_size" and isinstance(int(key), int):
                         print(f'{key}: {value}')
