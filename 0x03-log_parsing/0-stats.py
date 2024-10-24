@@ -39,6 +39,8 @@ def log_parse(stdin: str, logs: dict) -> None:
             if counter % 10 == 0:
                 print_stat(logs)
 
+        print_stat(logs)
+
     except KeyboardInterrupt:
         print_stat(logs)
         raise
@@ -50,7 +52,7 @@ def print_stat(logs: dict, ) -> None:
     """
     print(f'File size: {logs["file_size"]}')
     for key, value in sorted(logs.items()):
-        if key != "file_size":
+        if key != "file_size" and value:
             print(f'{key}: {value}')
 
 
