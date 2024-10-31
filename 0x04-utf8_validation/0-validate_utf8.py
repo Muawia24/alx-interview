@@ -5,6 +5,9 @@
 
 
 def check(arr):
+    """
+    Check for continuation bytes
+    """
     for x in arr:
         b = format(x, "08b")
         if b[:2] != "10":
@@ -13,6 +16,9 @@ def check(arr):
 
 
 def validUTF8(data):
+    """
+    Validates UTF-8 characters
+    """
     for i in range(len(data)):
         if isinstance(data[i], int) and data[i] > 244 or data[i] < 0:
             return False
