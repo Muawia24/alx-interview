@@ -22,6 +22,9 @@ def validUTF8(data):
     for i in range(len(data)):
         if not isinstance(data[i], int) or data[i] > 244 or data[i] < 0:
             return False
+        if data[i] in [192, 193]:
+            return False
+
         b = format(data[i], "08b")
         if b[0] == 0:
             continue
