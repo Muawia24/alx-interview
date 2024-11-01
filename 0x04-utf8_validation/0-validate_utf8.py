@@ -20,7 +20,7 @@ def validUTF8(data):
     Validates UTF-8 characters
     """
     for i in range(len(data)):
-        if not isinstance(data[i], int) and data[i] > 244 or data[i] < 0:
+        if not isinstance(data[i], int) or data[i] > 244 or data[i] < 0:
             return False
         b = format(data[i], "08b")
         if b[0] == 0:
