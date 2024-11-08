@@ -3,6 +3,7 @@
 0. N queens
 """
 
+
 import sys
 from typing import List
 
