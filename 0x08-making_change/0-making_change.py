@@ -10,7 +10,10 @@ def makeChange(coins: List[int], total: int) -> int:
      Determines the fewest number of coins needed to
      meet a given amount total.
     """
-    if total <= 0 or not coins:
+    if coins is None:
+        return -1
+
+    if total <= 0:
         return 0
 
     dp = [float('inf')] * (total + 1)
