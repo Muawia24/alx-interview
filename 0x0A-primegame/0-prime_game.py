@@ -43,7 +43,7 @@ def isWinner(x, nums):
     Return:
         name of the player that won the most rounds
     """
-    if (x == 0 or num is None or x is None):
+    if (x == 0 or nums is None or x is None):
         return None
 
     points = {'Maria': 0, 'Ben': 0}
