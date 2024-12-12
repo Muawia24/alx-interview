@@ -43,6 +43,8 @@ def isWinner(x, nums):
     Return:
         name of the player that won the most rounds
     """
+    if (x == 0 or num is None or x is None):
+        return None
 
     points = {'Maria': 0, 'Ben': 0}
     for num in nums:
@@ -51,6 +53,9 @@ def isWinner(x, nums):
             points['Maria'] += 1
         else:
             points['Ben'] += 1
+
+    if points['Maria'] == points['Ben']:
+        return None
 
     winner = max(zip(points.values(), points.keys()))[1]
 
